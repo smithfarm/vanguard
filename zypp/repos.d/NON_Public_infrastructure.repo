@@ -1,0 +1,8 @@
+[NON_Public_infrastructure]
+name=Additional packages for our infrastructure servers (SUSE_SLE_12_SP1_GA)
+enabled=1
+autorefresh=0
+baseurl=http://download.suse.de/ibs/NON_Public:/infrastructure/SUSE_SLE_12_SP1_GA/
+type=rpm-md
+gpgcheck=1
+gpgkey=http://download.suse.de/ibs/NON_Public:/infrastructure/SUSE_SLE_12_SP1_GA//repodata/repomd.xml.key

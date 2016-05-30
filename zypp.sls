@@ -5,3 +5,80 @@
     - group: root
     - mode: 644
 
+/etc/zypp/repos.d/SLE-12-WS-POOL.repo:
+  file.managed:
+    - source: salt://zypp/zypp.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/etc/zypp/repos.d/SLE-12-WS-UPDATES.repo:
+  file.managed:
+    - source: salt://zypp/zypp.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/etc/zypp/repos.d/SLE-Module-ASM-POOL.repo:
+  file.managed:
+    - source: salt://zypp/zypp.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/etc/zypp/repos.d/SLE-Module-ASM-UPDATES.repo:
+  file.managed:
+    - source: salt://zypp/zypp.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/etc/zypp/repos.d/SLE-SDK-POOL.repo:
+  file.managed:
+    - source: salt://zypp/zypp.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/etc/zypp/repos.d/SLE-SDK-UPDATES.repo:
+  file.managed:
+    - source: salt://zypp/zypp.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/etc/zypp/repos.d/SLE-SERVER-POOL.repo:
+  file.managed:
+    - source: salt://zypp/zypp.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/etc/zypp/repos.d/SLE-SERVER-UPDATES.repo:
+  file.managed:
+    - source: salt://zypp/zypp.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/etc/zypp/repos.d/SUSE:CA.repo:
+  file.managed:
+    - source: salt://zypp/zypp.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/etc/zypp/repos.d/NON_Public_infrastructure.repo:
+  file.managed:
+    - source: salt://zypp/zypp.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/etc/zypp/repos.d/Virtualization_containers.repo:
+  file.managed:
+    - source: salt://zypp/zypp.conf
+    - user: root
+    - group: root
+    - mode: 644
+

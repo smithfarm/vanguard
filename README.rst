@@ -33,10 +33,11 @@ Add minions
 6.  ``systemctl start salt-minion.service``
 7.  accept keys on Salt Master: ``salt-key -Ly``
 
-Apply updated state
+Apply the highstate
 -------------------
 
-To apply the highstate::
+The "highstate" is the state defined in ``top.sls``. It is applied using the
+command::
 
     salt '*' state.apply
 

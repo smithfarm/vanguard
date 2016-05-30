@@ -86,3 +86,10 @@ no_systemsmanagement_saltstack_repo:
   file.absent:
     - name: /etc/zypp/repos.d/systemsmanagement_saltstack.repo
 
+basepackages:
+  pkg.installed:
+    pkgs:
+      - ca-certificates-suse
+      - git
+      - vim
+

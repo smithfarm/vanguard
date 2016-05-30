@@ -18,3 +18,18 @@ Salt Master setup
 
 4.  ``systemctl enable salt-master.service``
 5.  ``systemctl start salt-master.service``
+
+Add minions
+-----------
+
+1.  delete keys on Salt Master: ``salt-key -Dy``
+2.  add Salt repo on minion
+3.  install on minion: ``zypper -n in salt-minion``
+4.  edit /etc/salt/minion::
+
+        master: <FQDN of Salt Master>
+
+5.  ``systemctl enable salt-minion.service``
+6.  ``systemctl start salt-minion.service``
+7.  accept keys on Salt Master: ``salt-key -Ly``
+

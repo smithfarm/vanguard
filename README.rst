@@ -7,7 +7,9 @@ Salt Master setup
 1.  add Salt repos
 2.  zypper in python-pygit2
 3.  zypper in salt-master
-4.  edit /etc/salt/master::
+4.  edit /etc/salt/master
+
+::
 
     fileserver_backend:
       - git

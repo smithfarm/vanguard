@@ -33,3 +33,13 @@ Add minions
 6.  ``systemctl start salt-minion.service``
 7.  accept keys on Salt Master: ``salt-key -Ly``
 
+Apply updated state
+-------------------
+
+To apply the highstate::
+
+    salt '*' state.apply
+
+After modifying this repo, the Salt Master service has to be restarted.
+Typically, after such restart, the first attempt to apply the highstate will
+timeout.

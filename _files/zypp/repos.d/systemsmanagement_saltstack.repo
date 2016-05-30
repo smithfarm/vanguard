@@ -1,0 +1,8 @@
+[systemsmanagement_saltstack]
+name=SaltStack, dependencies, and addons (SLE_12_SP1)
+enabled=1
+autorefresh=0
+baseurl=http://download.opensuse.org/repositories/systemsmanagement:/saltstack/SLE_12_SP1/
+type=rpm-md
+gpgcheck=1
+gpgkey=http://download.opensuse.org/repositories/systemsmanagement:/saltstack/SLE_12_SP1//repodata/repomd.xml.key

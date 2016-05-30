@@ -1,0 +1,6 @@
+[SUSE:CA]
+enabled=1
+autorefresh=1
+baseurl=http://download.nue.suse.com/ibs/SUSE:/CA/SLE_12_SP1
+type=rpm-md
+priority=100

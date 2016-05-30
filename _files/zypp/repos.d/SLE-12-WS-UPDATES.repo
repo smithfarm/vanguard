@@ -1,0 +1,6 @@
+[SLE-12-WS-UPDATES]
+name=SLE-12-WS-UPDATES
+enabled=1
+autorefresh=1
+baseurl=http://euklid.suse.de/mirror/SuSE/build.suse.de/SUSE/Updates/SLE-Module-Web-Scripting/12/x86_64/update
+type=rpm-md

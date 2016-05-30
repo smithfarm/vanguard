@@ -1,0 +1,6 @@
+[SLE-12-WS-POOL]
+name=SLE-12-WS-POOL
+enabled=1
+autorefresh=1
+baseurl=http://euklid.suse.de/mirror/SuSE/build.suse.de/SUSE/Products/SLE-Module-Web-Scripting/12/x86_64/product
+type=rpm-md

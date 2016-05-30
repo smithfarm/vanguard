@@ -1,0 +1,5 @@
+[SLE-SDK-POOL]
+enabled=1
+autorefresh=1
+baseurl=http://download.nue.suse.com/ibs/SUSE/Products/SLE-SDK/12-SP1/x86_64/product
+type=rpm-md

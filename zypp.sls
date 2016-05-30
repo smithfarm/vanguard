@@ -88,6 +88,7 @@ no_systemsmanagement_saltstack_repo:
 
 basepackages:
   pkg.installed:
+    - refresh: True
     - pkg:
       - ca-certificates-suse
       - git

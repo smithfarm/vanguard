@@ -82,3 +82,7 @@
     - group: root
     - mode: 644
 
+no_systemsmanagement_saltstack_repo:
+  file.absent:
+    - name: /etc/zypp/repos.d/systemsmanagement_saltstack.repo
+

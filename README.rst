@@ -4,15 +4,18 @@ Salt states for vanguard cluster
 Salt Master setup
 -----------------
 
-    1. add Salt repos
-    1. zypper in python-pygit2
-    1. zypper in salt-master
-    1. edit /etc/salt/master
+Here's what you do:
 
-       fileserver_backend:
-         - git
+1. add Salt repos
+1. zypper in python-pygit2
+1. zypper in salt-master
+1. edit /etc/salt/master
 
-       gitfs_provider: pygit2
+::
+   fileserver_backend:
+     - git
 
-       gitfs_remotes:
-         - git://github.com/smithfarm/vanguard.git
+   gitfs_provider: pygit2
+
+   gitfs_remotes:
+     - git://github.com/smithfarm/vanguard.git

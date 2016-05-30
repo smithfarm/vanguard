@@ -86,14 +86,10 @@ no_systemsmanagement_saltstack_repo:
   file.absent:
     - name: /etc/zypp/repos.d/systemsmanagement_saltstack.repo
 
-zypper_refresh:
-  cmd.run:
-    - name: zypper --gpg-auto-import-keys ref
-    - user: root
-
 basepackages:
   pkg.installed:
-    - pkg:
+    - refresh: True
+    - pkgs:
       - ca-certificates-suse
       - git
       - vim

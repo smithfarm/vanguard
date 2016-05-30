@@ -88,7 +88,8 @@ no_systemsmanagement_saltstack_repo:
 
 basepackages:
   pkg.installed:
-    - ca-certificates-suse
-    - git
-    - vim
+    - pkg:
+      - ca-certificates-suse
+      - git
+      - vim
 

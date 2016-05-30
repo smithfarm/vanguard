@@ -4,10 +4,10 @@ Salt states for vanguard cluster
 Salt Master setup
 -----------------
 
-Here's what you do:
+*  Here's what you do
 
-1. add Salt repos
-1. zypper in python-pygit2
+   1.  add Salt repos
+   1.  zypper in python-pygit2
 
 1. zypper in salt-master
 

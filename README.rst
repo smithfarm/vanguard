@@ -17,4 +17,4 @@ Salt Master setup
         gitfs_remotes:
           - git://github.com/smithfarm/vanguard.git
 
-More text follows here.
+5.  More text follows here.

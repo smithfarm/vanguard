@@ -1,2 +1,0 @@
-base:
-  pkg.installed: vim

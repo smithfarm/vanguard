@@ -42,23 +42,27 @@ The master daemon configuration files housed in this repository can be changed
 by pushing commits to it (or to a fork).
 
 When modifications are made, they do not take effect until the
-``salt-master.service`` unit has to be restarted. (FIXME: reload?)
+``salt-master.service`` unit is restarted. (FIXME: reloaded?)
 
 Typically, the first time you apply a state after restarting the Salt Master
 service, nothing will happen and the command will time out. It is unclear
-whether this is a bug in Salt or the default timeout is too short. Just repeat
-the command when this happens - Salt is designed to be idempotent.
+whether this is a bug in Salt or the default timeout is too short. When this
+happens, just issue the same command again - Salt is designed to be idempotent.
 
 
-Minion setup - introduction
----------------------------
+Minion setup
+------------
 
 Salt is a remote execution tool. Its purpose is to automate system
 administration tasks in a way that they can be run in parallel (and
 idempotently) across a group of minion machines.
 
-A single master machine/daemon can be configured to control a single group of
-machines, or multiple groups.
+A single master machine/daemon can be configured to control multiple groups of
+machines, or just one group.
+
+
+Assumptions
+~~~~~~~~~~~
 
 The minion machines in each group (e.g. Ceph cluster) should have similar
 hardware configurations. For example, on the vanguard cluster, each machine has
@@ -70,17 +74,22 @@ way.
 
 Another assumption we make is that we are starting from a "clean slate" - i.e.,
 that the minions will have fresh, vanilla OS installations on their root
-filesystem, and that they all have the same root password. 
+filesystem, and that they all have the same root password. If the minions are
+physical machines, one way to automate their reimaging is via PXE and autoyast2
+profiles. If the minions are in a public/private cloud (OpenStack, AWS), some
+other tooling is needed to create the VMs there.
 
-Minion setup - bootstrapping
-----------------------------
 
-Before minion machines can be controlled, the minion daemon must be running
-on them and the minion keys must be accepted by the master daemon.
+Bootstrapping
+~~~~~~~~~~~~~
 
-This requirement introduces a "chicken and egg" problem because the minion
-machines start with a clean, vanilla OS installation and this, by definition,
-does not include any Salt packages.
+Before minion machines can be controlled, the minion daemon must be installed,
+configured, and started. Also, the minion keys must be accepted by the master
+daemon.
+
+This requirement introduces a "chicken and egg" problem because we are assuming
+the minion machines start with a clean, vanilla OS installation -- this, by
+definition, does not include any Salt packages.
 
 To bootstrap the minion daemons, a number of clearly defined steps must be
 taken on each machine. 
@@ -88,31 +97,38 @@ taken on each machine.
 1. add Salt repo
 2. zypper ref
 3. zypper install salt-minion
+4. edit /etc/salt/minion and change ``master`` value to point to the FQDN of
+the master machine
+5. systemctl enable salt-minion.service
+6. systemctl start salt-minion.service
+
+Also, if the master accepted keys from the same machines before, these keys
+must be deleted first, before running these steps.
+
+After these steps have been completed on all the minions, then the (new) minion
+keys need to be accepted on the master. Then the cluster is ready to accept
+Salt.
 
 
-These steps are always the same, and since each machine
-will have the same root password, they can be automated and run in parallel.
+Minion bootstrap script
+~~~~~~~~~~~~~~~~~~~~~~~
 
-The tool of choice for this task is ``pssh`` (short of "Parallel SSH), which is
-distributed in the ``python-pssh`` package.
+Now, the minion bootstrapping steps are always the same, so they can be
+automated by a trivial script. Even better, since each minion machine has the
+same root password, the script can be run in parallel on all the minions.
 
-1.  ``zypper in python-pssh``
-2.  copy/paste the ``minion-bootstrap.sh`` script from this git repo to the
-Salt Master (machine)
-3.  ``minion-bootstrap.sh $MINION1 $MINION2 $MINION3`` where ``$MINION1`` etc.
-is a list of FQDNs (or IP addresses) of the minions
+The ``bootstrap.sh`` script included here implements the steps described in the
+previous section. It is designed to be run from a clone of this git repo on the
+master machine. Here's how it works.
 
-The ``minion-bootstrap.sh`` script automates the following steps by running
-them in parallel on all the minions via ``pssh``:
+The script takes a list of minion FQDNs.
 
-1.  add the correct repo
-2.  run ``zypper ref``
-3.  install the ``salt-minion`` package
-4.  configure the minions to treat the current host (using ``hostname --fqdn``) as the Salt Master
-5.  enable the ``salt-minion.service`` systemd unit
-6.  start the ``salt-minion.service`` systemd unit
+After deleting all the minion keys, it copies the ``minion-bootstrap.sh``
+script to all the minions using ``pscp`` (which on openSUSE is distributed in
+the ``pssh`` package). Then it runs the script in parallel on all the minions.
+Finally, it waits for the minions to register their new keys with the master
+daemon and then it accepts the minion keys.
 
-The script also takes care of deleting and accepting the minion keys.
 
 Apply states
 ------------

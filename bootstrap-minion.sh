@@ -29,7 +29,7 @@ zypper --no-gpg-checks refresh
 zypper --non-interactive install salt-minion
 
 hn=$(hostname --fqdn)
-sed -i -e \'s/^#master:.*$/master: $fn/\' /etc/salt/minion
+sed -i -e "s/^#master:.*$/master:\ $fn/" /etc/salt/minion
 
 systemctl enable salt-minion.service
 systemctl start salt-minion.service

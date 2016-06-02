@@ -18,6 +18,9 @@ done
 echo "Copying minion-bootstrap.sh to minions"
 pscp -v -h $tmpfile -A -l root -O StrictHostKeyChecking=no bootstrap-minion.sh bootstrap-minion.sh
 
+echo "Running minion-bootstrap.sh on minions"
+pscp -v -h $tmpfile -A -i -l root -O StrictHostKeyChecking=no ./bootstrap-minion.sh
+
 echo "Removing $tmpfile"
 rm $tmpfile
 

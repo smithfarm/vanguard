@@ -4,6 +4,8 @@
 #
 # (script should produce no output)
 
+local master_fqdn=$1
+
 systemctl stop salt-minion.service
 systemctl disable salt-minion.service
 zypper -n remove salt
@@ -28,8 +30,8 @@ zypper --no-gpg-checks refresh
 
 zypper --non-interactive install salt-minion
 
-hn=$(hostname --fqdn)
-sed -i -e "s/^#master:.*$/master:\ $hn/" /etc/salt/minion
+echo "Setting master to $master_fqdn in /etc/salt/minion"
+sed -i -e "s/^#master:.*$/master:\ $master_fqdn/" /etc/salt/minion
 
 systemctl enable salt-minion.service
 systemctl start salt-minion.service

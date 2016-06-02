@@ -4,6 +4,13 @@
 #
 # (script should produce no output)
 
+systemctl stop salt-minion.service
+systemctl disable salt-minion.service
+zypper -n remove salt
+rm /etc/salt/minion
+
+rm -rf /etc/zypp/repos.d/*
+
 set -e
 
 cat << EOM > /etc/zypp/repos.d/NON_Public_infrastructure.repo

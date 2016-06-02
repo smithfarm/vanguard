@@ -7,7 +7,7 @@
 systemctl stop salt-minion.service
 systemctl disable salt-minion.service
 zypper -n remove salt
-rm /etc/salt/minion
+rm /etc/salt/minion 2>/dev/null
 
 rm -rf /etc/zypp/repos.d/*
 
@@ -29,7 +29,7 @@ zypper --no-gpg-checks refresh
 zypper --non-interactive install salt-minion
 
 hn=$(hostname --fqdn)
-sed -i -e "s/^#master:.*$/master:\ $fn/" /etc/salt/minion
+sed -i -e "s/^#master:.*$/master:\ $hn/" /etc/salt/minion
 
 systemctl enable salt-minion.service
 systemctl start salt-minion.service

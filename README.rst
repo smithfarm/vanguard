@@ -97,8 +97,8 @@ taken on each machine.
 1. add Salt repo
 2. zypper ref
 3. zypper install salt-minion
-4. edit /etc/salt/minion and change ``master`` value to point to the FQDN of
-the master machine
+4. edit /etc/salt/minion and change ``master`` value to point to the 
+   FQDN of the master machine
 5. systemctl enable salt-minion.service
 6. systemctl start salt-minion.service
 

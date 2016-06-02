@@ -6,15 +6,15 @@
 
 set -e
 
-cat << EOM > /etc/zypp/repos.d/NON_Public-infrastructure.repo
-[FATE]
-name=SUSE Feature Tracking (openSUSE_13.2)
+cat << EOM > /etc/zypp/repos.d/NON_Public_infrastructure.repo
+[NON_Public_infrastructure]
+name=Additional packages for our infrastructure servers (SUSE_SLE_12_SP1_GA)
 enabled=1
 autorefresh=0
-baseurl=http://download.opensuse.org/repositories/FATE/openSUSE_13.2/
+baseurl=http://download.suse.de/ibs/NON_Public:/infrastructure/SUSE_SLE_12_SP1_GA/
 type=rpm-md
 gpgcheck=1
-gpgkey=http://download.opensuse.org/repositories/FATE/openSUSE_13.2//repodata/repomd.xml.key
+gpgkey=http://download.suse.de/ibs/NON_Public:/infrastructure/SUSE_SLE_12_SP1_GA//repodata/repomd.xml.key
 EOM
 
 zypper --no-gpg-checks refresh
@@ -22,7 +22,7 @@ zypper --no-gpg-checks refresh
 zypper install salt-minion
 
 hn=$(hostname --fqdn)
-sed -i -e \'s/^# master:.*$/master: $fn/\'
+sed -i -e \'s/^#master:.*$/master: $fn/\' /etc/salt/minion
 
 systemctl enable salt-minion.service
 systemctl start salt-minion.service

@@ -26,7 +26,7 @@ EOM
 
 zypper --no-gpg-checks refresh
 
-zypper install salt-minion
+zypper --no-interactive install salt-minion
 
 hn=$(hostname --fqdn)
 sed -i -e \'s/^#master:.*$/master: $fn/\' /etc/salt/minion

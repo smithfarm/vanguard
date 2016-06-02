@@ -9,7 +9,7 @@ machines where said daemons are running.
 Master setup
 ------------
 
-The master machine should be in the same network as all the minion machines.
+The master machine should be in the same network with all the minion machines.
 
 When daemons start, they typically load configuration from files in the
 filesystem. While Salt can do this (``/etc/salt``), too, much more interesting

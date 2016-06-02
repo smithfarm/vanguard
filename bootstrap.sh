@@ -1,10 +1,10 @@
 #!/bin/bash
-
-echo "Installing pssh"
-zypper -n install pssh
+#
+# Install pssh and salt-master packages before running.
+#
 
 echo "Deleting all minion keys"
-salt-key -Dy
+salt-key -Dy || exit $?
 
 echo "Initializing temporary file"
 tmpfile=$(mktemp /tmp/vanguard-bootstrap.XXXXXX)

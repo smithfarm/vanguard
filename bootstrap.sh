@@ -15,10 +15,10 @@ for x ; do
     echo $x >> $tmpfile
 done
 
-echo "Copying minion-bootstrap.sh to minions"
+echo "Copying bootstrap-minion.sh to minions"
 pscp -v -h $tmpfile -A -l root -O StrictHostKeyChecking=no bootstrap-minion.sh bootstrap-minion.sh
 
-echo "Running minion-bootstrap.sh on minions"
+echo "Running bootstrap-minion.sh on minions"
 pscp -v -h $tmpfile -A -i -l root -O StrictHostKeyChecking=no ./bootstrap-minion.sh
 
 echo "Removing $tmpfile"

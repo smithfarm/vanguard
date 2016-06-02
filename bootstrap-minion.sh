@@ -4,7 +4,7 @@
 #
 # (script should produce no output)
 
-local master_fqdn=$1
+master_fqdn=$1
 
 systemctl stop salt-minion.service
 systemctl disable salt-minion.service

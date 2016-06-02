@@ -4,7 +4,7 @@
 #
 
 echo "Deleting all minion keys"
-sudo salt-key -Dy || exit $?
+sudo salt-key -Dy
 
 echo "Initializing temporary file"
 tmpfile=$(mktemp /tmp/vanguard-bootstrap.XXXXXX)
